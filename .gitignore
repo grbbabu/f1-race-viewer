@@ -4,4 +4,7 @@ bower_components/
 build/
 dist/
 .idea/
-
+logs/*
+!.gitkeep
+tmp
+.DS_Store
