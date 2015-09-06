@@ -1,12 +1,10 @@
-'use strict';
+(function() {
+    'use strict';
 
-// Declare app level module which depends on views, and components
-angular.module('myApp', [
-  'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
-]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
-}]);
+    // Declare app level module which depends on views, and components
+    angular.module('f1Viewer', ['ngRoute', 'f1Viewer.drivers', 'f1Viewer.races', 'f1Viewer.teams'])
+        .config(['$routeProvider', function($routeProvider) {
+            $routeProvider.otherwise({redirectTo: '/races'});
+        }])
+        .constant('VERSION', '0.0.1');
+}());
