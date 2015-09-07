@@ -1,1 +1,21 @@
-<p>This is the view for the teams.</p>
+<p data-ng-show="yearOfStanding">Team's Championship Standings - {{ yearOfStanding }}</p>
+<table class="table table-striped" data-ng-show="showTeamDetails()">
+    <thead>
+    <tr>
+        <th>Position</th>
+        <th>Team</th>
+        <th>Team Details</th>
+        <th>Points</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-ng-repeat="team in teams">
+        <td> {{ team.position }}</td>
+        <td> {{ team.Constructor.name }}</td>
+        <td><a href="{{ team.Constructor.url }}" target="_blank">{{ team.Constructor.name + ' Details'}}</a></td>
+        <td> {{ team.points }}</td>
+    </tbody>
+</table>
+<div class="alert alert-danger" role="alert" data-ng-hide="showTeamDetails()">
+    <p>Unable to get Team details. Try again later.</p>
+</div>

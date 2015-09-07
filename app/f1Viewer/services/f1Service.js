@@ -9,5 +9,8 @@
             this.getDriverDetails = function () {
                 return $http.get('http://ergast.com/api/f1/2015/driverStandings.json');
             };
+            this.getConstructorDetails = function () {
+                return $http.get('http://ergast.com/api/f1/2015/constructorStandings.json');
+            };
         }]);
 }());

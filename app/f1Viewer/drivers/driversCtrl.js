@@ -11,7 +11,7 @@
                 })
                 .error(function (data, status, headers, config) {
                     $log.error("Unable to get Driver details");
-                    $scope.drivers = {};
+                    $scope.drivers = [];
                     $scope.yearOfStanding = '';
                     $scope.driverDetailsNotFound = true;
                 });
