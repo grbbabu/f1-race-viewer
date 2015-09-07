@@ -1,4 +1,3 @@
-// F1 Viewer Module
 (function() {
     'use strict';
 
