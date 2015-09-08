@@ -1,26 +1,40 @@
-<p data-ng-show="yearOfStanding">Race Calender - {{ yearOfStanding }}</p>
-<table class="table table-striped" data-ng-show="showRaceDetails()">
-    <thead>
-    <tr>
-        <th>Round</th>
-        <th>Grand Prix</th>
-        <th>Circuit Name</th>
-        <th>Date</th>
-        <th>Winner Name</th>
-        <th>Constructor</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr data-ng-repeat="race in races">
-        <td> {{ race.round }}</td>
-        <td> {{ race.raceName }}</td>
-        <td> {{ race.Circuit.circuitName }}</td>
-        <td> {{ race.date }}</td>
-        <td> {{ race.Results[0].Driver.givenName + ' ' + race.Results[0].Driver.familyName}}</td>
-        <td> {{ race.Results[0].Constructor.name }}</td>
-    </tr>
-    </tbody>
-</table>
+<div class="page-header">
+    <h1>Race Calender <small>Season 2015</small></h1>
+</div>
+<div data-ng-show="showRaceDetails() && !loading">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Round</th>
+            <th>Grand Prix</th>
+            <th>Circuit Name</th>
+            <th>Date</th>
+            <th>Winner Name</th>
+            <th>Constructor</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="race in races">
+            <td> {{ race.round }}</td>
+            <td>
+                <img src="./images/flags/country/{{ race.Circuit.Location.country }}.png" alt="{{ race.Circuit.Location.country }} flag"/>
+                {{ race.raceName }}
+            </td>
+            <td> {{ race.Circuit.circuitName }}</td>
+            <td> {{ race.date }}</td>
+            <td>
+                <img src="./images/flags/nationality/{{ race.Results[0].Driver.nationality }}.png" alt="{{ race.Results[0].Driver.nationality }} flag"/>
+                {{ race.Results[0].Driver.givenName + ' ' + race.Results[0].Driver.familyName}}
+            </td>
+            <td>
+                <img src="./images/flags/nationality/{{ race.Results[0].Constructor.nationality }}.png" alt="{{ race.Results[0].Constructor.nationality }} flag"/>
+                {{ race.Results[0].Constructor.name }}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<img data-ng-show="loading" class="loader" src="./images/ajax-loader.gif">
 <div class="alert alert-danger" role="alert" data-ng-hide="showRaceDetails()">
     <p>Unable to get race details. Try again later.</p>
 </div>

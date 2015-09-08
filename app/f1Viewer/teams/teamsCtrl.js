@@ -3,17 +3,19 @@
 
     angular.module('f1Viewer.teams')
         .controller('teamsCtrl', ['$scope', '$http', '$log', 'f1Service', function ($scope, $http, $log, f1Service) {
+            $scope.loading = true;
             f1Service.getConstructorDetails()
-                .success(function (data) {
-                    $scope.teams = data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
-                    $scope.yearOfStanding = data.MRData.StandingsTable.season;
+                .then(function (response) {
+                    $scope.teams = response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
                     $scope.teamDetailsNotFound = false;
-                })
-                .error(function (data, status, headers, config) {
+                },
+                function (response) {
                     $log.error("Unable to get Driver details");
                     $scope.teams = [];
-                    $scope.yearOfStanding = '';
                     $scope.teamDetailsNotFound = true;
+                })
+                .finally(function() {
+                    $scope.loading = false;
                 });
 
             $scope.showTeamDetails = function () {

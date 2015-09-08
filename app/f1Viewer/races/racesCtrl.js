@@ -3,18 +3,21 @@
 
     angular.module('f1Viewer.races')
         .controller('racesCtrl', ['$scope', 'f1Service', '$log', function ($scope, f1Service, $log) {
+            $scope.loading = true;
             f1Service.getRaceDetails()
-                .success(function (data) {
-                    $scope.races = data.MRData.RaceTable.Races;
-                    $scope.yearOfStanding = data.MRData.RaceTable.season;
+                .then(function (response) {
+                    $scope.races = response.data.MRData.RaceTable.Races;
                     $scope.raceDetailsNotFound = false;
-                })
-                .error(function (data, status, headers, config) {
+                },
+                function (response) {
                     $log.error("Unable to get race details");
                     $scope.races = [];
-                    $scope.yearOfStanding = '';
                     $scope.raceDetailsNotFound = true;
+                })
+                .finally(function() {
+                    $scope.loading = false;
                 });
+
 
             $scope.showRaceDetails = function () {
                 if (typeof($scope.raceDetailsNotFound) !== 'undefined') {

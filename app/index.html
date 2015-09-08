@@ -16,27 +16,39 @@
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
-<ul class="menu">
-    <li><a href="#/races">Races</a></li>
-    <li><a href="#/teams">Teams</a></li>
-    <li><a href="#/drivers">Drivers</a></li>
-</ul>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#/races">F1 Race Viewer</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li><a href="#/races">Races</a></li>
+                    <li><a href="#/teams">Teams</a></li>
+                    <li><a href="#/drivers">Drivers</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-<!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.</p>
-<![endif]-->
+    <div class="container">
+        <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+            your browser</a> to improve your experience.</p>
+        <![endif]-->
 
-<div data-ng-view></div>
+        <div data-ng-view></div>
 
-<div data-ng-controller="appCtrl">Version: {{ version }}</div>
+        <footer class="footer" data-ng-controller="appCtrl">
+            <p>Copyright <span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span> 2015, F1 Race Viewer. Version: {{ version }}</p>
+        </footer>
+    </div>
 
-<!-- In production use:
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
--->
 <script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="app.js"></script>
 <script src="appCtrl.js"></script>
 <script src="f1Viewer/services/f1Service.js"></script>

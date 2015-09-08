@@ -1,21 +1,26 @@
-<p data-ng-show="yearOfStanding">Driver's Championship Standings - {{ yearOfStanding }}</p>
-<table class="table table-striped" data-ng-show="showDriverDetails()">
-    <thead>
-    <tr>
-        <th>Position</th>
-        <th>Winner Name</th>
-        <th>Constructor</th>
-        <th>Points</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr data-ng-repeat="driver in drivers">
-        <td> {{ driver.position }}</td>
-        <td> {{ driver.Driver.givenName + ' ' + driver.Driver.familyName }}</td>
-        <td> {{ driver.Constructors[0].name }}</td>
-        <td> {{ driver.points }}</td>
-    </tbody>
-</table>
+<div class="page-header">
+    <h1>Driver's Championship Standings <small>Season 2015</small></h1>
+</div>
+<div data-ng-show="showDriverDetails() && !loading">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Position</th>
+            <th>Winner Name</th>
+            <th>Constructor</th>
+            <th>Points</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="driver in drivers">
+            <td> {{ driver.position }}</td>
+            <td> {{ driver.Driver.givenName + ' ' + driver.Driver.familyName }}</td>
+            <td> {{ driver.Constructors[0].name }}</td>
+            <td> {{ driver.points }}</td>
+        </tbody>
+    </table>
+</div>
+<img data-ng-show="loading" class="loader" src="./images/ajax-loader.gif">
 <div class="alert alert-danger" role="alert" data-ng-hide="showDriverDetails()">
     <p>Unable to get driver details. Try again later.</p>
 </div>

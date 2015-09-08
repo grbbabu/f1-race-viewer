@@ -1,21 +1,26 @@
-<p data-ng-show="yearOfStanding">Team's Championship Standings - {{ yearOfStanding }}</p>
-<table class="table table-striped" data-ng-show="showTeamDetails()">
-    <thead>
-    <tr>
-        <th>Position</th>
-        <th>Team</th>
-        <th>Team Details</th>
-        <th>Points</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr data-ng-repeat="team in teams">
-        <td> {{ team.position }}</td>
-        <td> {{ team.Constructor.name }}</td>
-        <td><a href="{{ team.Constructor.url }}" target="_blank">{{ team.Constructor.name + ' Details'}}</a></td>
-        <td> {{ team.points }}</td>
-    </tbody>
-</table>
+<div class="page-header">
+    <h1>Team's Championship Standings <small>Season 2015</small></h1>
+</div>
+<div data-ng-show="showTeamDetails() && !loading">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Position</th>
+            <th>Team</th>
+            <th>Team Details</th>
+            <th>Points</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="team in teams">
+            <td> {{ team.position }}</td>
+            <td> {{ team.Constructor.name }}</td>
+            <td><a href="{{ team.Constructor.url }}" target="_blank">{{ team.Constructor.name + ' Details'}}</a></td>
+            <td> {{ team.points }}</td>
+        </tbody>
+    </table>
+</div>
+<img data-ng-show="loading" class="loader" src="./images/ajax-loader.gif">
 <div class="alert alert-danger" role="alert" data-ng-hide="showTeamDetails()">
     <p>Unable to get Team details. Try again later.</p>
 </div>
